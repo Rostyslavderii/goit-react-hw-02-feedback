@@ -19,6 +19,7 @@ class App extends Component {
     this.setState(prevState => ({ [key]: prevState[key] + 1 }));
     // this.countTotalFeedback();
     // this.countPositiveFeedbackPercentage();
+    //
   };
 
   render() {
