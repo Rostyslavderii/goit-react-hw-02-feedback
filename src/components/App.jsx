@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import styles from './Feedback.module.scss';
-import cn from 'classnames';
+// import styles from './Feedback.module.scss';
+// import cn from 'classnames';
 import { Statistics } from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions ';
 import { Section } from './Section/Section';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import styles from './Feedback.module.scss';
-import cn from 'classnames';
+// import cn from 'classnames';
 
 class Statistics extends Component {
   render() {
