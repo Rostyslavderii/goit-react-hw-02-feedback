@@ -15,40 +15,10 @@ class App extends Component {
     feedback: 0,
   };
 
-  // handleIncrementgood = e => {
-  //   // if (this.state.count >= 100) return;
-  //   this.setState(prevState => {
-  //     console.log(e.currentTarget);
-  //     return {
-  //       good: prevState.good + 1,
-  //     };
-  //   });
-  //   this.countTotalFeedback();
-  //   this.countPositiveFeedbackPercentage();
-  // };
-
-  // countTotalFeedback = e => {
-  //   this.setState(prevState => {
-  //     console.log(e.currentTarget);
-  //     return {
-  //       total: prevState.good + prevState.neutral + prevState.bad,
-  //     };
-  //   });
-  // };
-
-  // countPositiveFeedbackPercentage = e => {
-  //   this.setState(prevState => {
-  //     console.log(e.currentTarget);
-  //     return {
-  //       feedback: Math.round((prevState.good * 100) / prevState.total),
-  //     };
-  //   });
-  // };
-
   onLeaveFeedback = key => {
     this.setState(prevState => ({ [key]: prevState[key] + 1 }));
     // this.countTotalFeedback();
-    //   this.countPositiveFeedbackPercentage();
+    // this.countPositiveFeedbackPercentage();
   };
 
   render() {
@@ -75,3 +45,33 @@ class App extends Component {
 }
 
 export { App };
+
+// handleIncrementgood = e => {
+//   // if (this.state.count >= 100) return;
+//   this.setState(prevState => {
+//     console.log(e.currentTarget);
+//     return {
+//       good: prevState.good + 1,
+//     };
+//   });
+//   this.countTotalFeedback();
+//   this.countPositiveFeedbackPercentage();
+// };
+
+// countTotalFeedback = e => {
+//   this.setState(prevState => {
+//     console.log(e.currentTarget);
+//     return {
+//       total: prevState.good + prevState.neutral + prevState.bad,
+//     };
+//   });
+// };
+
+// countPositiveFeedbackPercentage = e => {
+//   this.setState(prevState => {
+//     console.log(e.currentTarget);
+//     return {
+//       feedback: Math.round((prevState.good * 100) / prevState.total),
+//     };
+//   });
+// };

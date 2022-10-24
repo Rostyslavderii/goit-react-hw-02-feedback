@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styles from './Feedback.module.scss';nn
+// import styles from './Feedback.module.scss';
 import cn from 'classnames';
 
 function FeedbackOptions({ onLeaveFeedback, options }) {
