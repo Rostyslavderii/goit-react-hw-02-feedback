@@ -1,35 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Statistics.module.scss';
+// import styles from './Feedback.module.scss';
 import cn from 'classnames';
 
-export function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+class Statistics extends Component {
+  render() {
+    const { good, neutral, bad } = this.props.value;
+    console.log(this.props.value);
+    console.log('good:', good);
+    return (
+      <>
+        <h2>Statistics</h2>
+        <h3>Good:{good}</h3>
+        <h3>Neutral:{neutral}</h3>
+        <h3>Bad:{bad}</h3>
+        <h3>Total:{good + neutral + bad}</h3>
+        <h3>feedback:{Math.round((good / (good + neutral + bad)) * 100)}%</h3>
+      </>
+    );
+  }
 }
 
-function Statistics({ title, stats }) {
-  console.log('props', title, stats);
-  return (
-    <section className={cn(styles.statistics)}>
-      {/* <h2 className={cn(styles.title)}>Upload stats</h2> */}
-      {title && <h2 className={cn(styles.title)}>{title}</h2>}
-      <ul className={styles.stats}>
-        {stats.map(label => (
-          <li
-            // className={cn(styles.secondList, {
-            //   title: styles.firstList === true,
-            // })}
-            className={title ? styles.firstList : styles.secondList}
-            key={label.id}
-            style={{ backgroundColor: getRandomHexColor() }}
-          >
-            <span className={styles.label}>{label.label}</span>
-            <span className={styles.percentage}>{label.percentage}%</span>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
+Statistics.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+};
 
-export default Statistics;
+export { Statistics };

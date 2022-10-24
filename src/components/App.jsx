@@ -1,63 +1,77 @@
-import user from './user.json/user.json';
-import data from './Statistics/data.json';
-import Profile from './Profile';
-import Statistics from './Statistics/Statistics';
-import friends from './friendList/friends.json';
-import FriendList from './friendList/FriendList';
-import transactions from './transactions/transactions.json';
-import TransactionHistory from './transactions/TransactionHistory';
+import { Component } from 'react';
+import styles from './Feedback.module.scss';
+import cn from 'classnames';
+import { Statistics } from './Statistics/Statistics';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions ';
+import { Section } from './Section/Section';
+import { Notification } from './Notification ';
 
-export const App = () => {
-  //   const tacos = [
-  // {
-  //   id:1,
-  //   imageUrl: 'https://cdn-icons-png.flaticon.com/512/1077/1077012.png',
-  //   productPrice: 10.99,
-  //   obj: {1: 1, 2: 2, 3: 3, 4: 4, 5: 5},
-  //   showDiscount: true,
-  // },
-  // ]
-  console.log({ friends });
-  console.log(friends);
-  return (
-    <>
-      <div>
-        <Profile
-          //название текста в Карточке Профиля
-          username={user.username}
-          tag={user.tag}
-          location={user.location}
-          avatar={user.avatar}
-          stats={user.stats}
-        />
+class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+    total: 0,
+    feedback: 0,
+  };
 
-        {/* {tacos.map((imageUrl, productPrice, showDiscount, obj, aboba, taco) => {
-        return(
-      <BlackSmith
-      key={taco.id}
-      imageUrl={imageUrl}
-      productPrice={productPrice}
-      aboba = 'aboba2'
-      {...obj}
-      showDiscount={true}/>);
-      })}; */}
-      </div>
-      <div>
-        <Statistics
-          // id={data.id}
-          // label={data.label}
-          // percentage={data.percentage}
-          title="Upload stats"
-          stats={data}
-        />
-        <Statistics stats={data} />
-      </div>
-      <div>
-        <FriendList friends={friends} />
-      </div>
-      <div>
-        <TransactionHistory items={transactions} />
-      </div>
-    </>
-  );
-};
+  // handleIncrementgood = e => {
+  //   // if (this.state.count >= 100) return;
+  //   this.setState(prevState => {
+  //     console.log(e.currentTarget);
+  //     return {
+  //       good: prevState.good + 1,
+  //     };
+  //   });
+  //   this.countTotalFeedback();
+  //   this.countPositiveFeedbackPercentage();
+  // };
+
+  // countTotalFeedback = e => {
+  //   this.setState(prevState => {
+  //     console.log(e.currentTarget);
+  //     return {
+  //       total: prevState.good + prevState.neutral + prevState.bad,
+  //     };
+  //   });
+  // };
+
+  // countPositiveFeedbackPercentage = e => {
+  //   this.setState(prevState => {
+  //     console.log(e.currentTarget);
+  //     return {
+  //       feedback: Math.round((prevState.good * 100) / prevState.total),
+  //     };
+  //   });
+  // };
+
+  onLeaveFeedback = key => {
+    this.setState(prevState => ({ [key]: prevState[key] + 1 }));
+    // this.countTotalFeedback();
+    //   this.countPositiveFeedbackPercentage();
+  };
+
+  render() {
+    const { good, neutral, bad } = this.state;
+    const message = 'There is no feedback';
+    return (
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={this.state}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
+          {good === 0 && neutral === 0 && bad === 0 ? (
+            <Notification message={message} /> //true?
+          ) : (
+            <Statistics value={this.state} /> //false?
+          )}
+          {/* {<Notification message={message} /> || this.onLeaveFeedback()}
+          {to && (<Statistics value={this.state} />)} */}
+        </Section>
+      </>
+    );
+  }
+}
+
+export { App };
